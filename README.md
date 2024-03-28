@@ -3,6 +3,10 @@
 
 프로그래머스의 경우, 푼 문제 목록에 대한 마이그레이션이 필요합니다.
 
+*GitHub Actions가 Fail이 발생하는 경우*
+
+> 해당 Repository의 Settings -> Actions -> general -> workflow permission 에 쓰기 권한이 허용 되었는지 확인해 주세요.
+
 ## 📚 백준
 ### 🚀 Bronze
 | 문제번호 | 링크 |

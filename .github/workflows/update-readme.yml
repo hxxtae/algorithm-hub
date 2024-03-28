@@ -32,3 +32,5 @@ jobs: # 실제 실행될 내용
     - name: Push change # 4) 메인에 푸시
       run: |
         git push
+
+        

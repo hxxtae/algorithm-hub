@@ -1,32 +1,34 @@
 import sys
-from collections import deque
 read = sys.stdin.readline
 
 N, M, R = map(int, read().rstrip().split(' '))
 ARR = [read().rstrip().split(' ') for _ in range(N)]
 
-answer = [[0] * M for _ in range(N)]
-cycleArrCnt = min(N, M) // 2
-cycleArrMove = [((N-1)-(i*2)+(M-1)-(i*2))*2 for i in range(cycleArrCnt)]
-dq = deque()
+cycleArrCnt = int(min(N, M) / 2) # 돌려야 하는 배열들의 개수
+cycleArrStart = [[i, i] for i in range(cycleArrCnt)] # 돌려야 하는 배열들의 시작점
+cycleArrMove = [[(N-1)-(i*2), (M-1)-(i*2), (N-1)-(i*2), (M-1)-(i*2)] for i in range(cycleArrCnt)] # 돌려야 하는 배열들의 y,x 방향 이동 길이
+
+def moveYX(y, x, move, way, prev, curr):
+  X = [0, 1, 0, -1]
+  Y = [1, 0, -1, 0]
+  for _ in range(move):
+    y, x = [y + Y[way], x + X[way]]
+    curr = ARR[y][x]
+    ARR[y][x] = prev
+    prev = curr
+  
+  return [y, x, prev, curr]
 
 for i in range(cycleArrCnt):
-  dq.clear()
-  dq.extend(ARR[i][i:M-i])
-  dq.extend([r[M-1-i] for r in ARR[i+1:N-1-i]])
-  dq.extend(ARR[N-1-i][i:M-i][::-1])
-  dq.extend([r[i] for r in ARR[i+1:N-1-i]][::-1])
+  totalMove = R % sum(cycleArrMove[i])
+  for _ in range(totalMove):
 
-  moveR = R % cycleArrMove[i]
-  dq.rotate(-moveR)
+    y, x = cycleArrStart[i]
+    prev = ARR[y][x]
+    curr = ''
 
-  for j in range(i, M-i):
-    answer[i][j] = dq.popleft()
-  for j in range(i+1, N-1-i):
-    answer[j][M-1-i] = dq.popleft()
-  for j in range(M-1-i, i-1, -1):
-    answer[N-1-i][j] = dq.popleft()  
-  for j in range(N-2-i, i, -1):
-    answer[j][i] = dq.popleft()  
+    for way in range(4):
+      move = cycleArrMove[i][way]
+      y, x, prev, curr = moveYX(y, x, move, way, prev, curr)
 
-print("\n".join(map(lambda x: " ".join(x), answer)))
+print("\n".join(map(lambda x: " ".join(x), ARR)))

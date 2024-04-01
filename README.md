@@ -17,6 +17,7 @@
 | 문제번호 | 링크 |
 | ----- | ----- |
 |1013. Contact|[링크](./%EB%B0%B1%EC%A4%80/Gold/1013.%E2%80%85Contact/README.md)|
+|16935. 배열 돌리기 3|[링크](./%EB%B0%B1%EC%A4%80/Gold/16935.%E2%80%85%EB%B0%B0%EC%97%B4%E2%80%85%EB%8F%8C%EB%A6%AC%EA%B8%B0%E2%80%853/%EB%B0%B0%EC%97%B4%E2%80%85%EB%8F%8C%EB%A6%AC%EA%B8%B0%E2%80%853.py)|
 |21276. 계보 복원가 호석|[링크](./%EB%B0%B1%EC%A4%80/Gold/21276.%E2%80%85%EA%B3%84%EB%B3%B4%E2%80%85%EB%B3%B5%EC%9B%90%EA%B0%80%E2%80%85%ED%98%B8%EC%84%9D/README.md)|
 |2493. 탑|[링크](./%EB%B0%B1%EC%A4%80/Gold/2493.%E2%80%85%ED%83%91/README.md)|
 ### 🚀 Silver

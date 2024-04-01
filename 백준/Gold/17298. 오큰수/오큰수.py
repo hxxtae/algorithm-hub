@@ -8,13 +8,13 @@ length = len(ARR)
 answer = [-1] * length
 stack = [ARR[-1]]
 
-for i, num in enumerate(ARR[::-1]):
-  if i == 0: continue
-  
+for i in range(length-2, -1, -1):
+  num = ARR[i]
+
   maxRight = stack[-1]
   # maxRight가 더 큰 경우
   if maxRight > num:
-    answer[length-1-i] = maxRight
+    answer[i] = maxRight
     stack.append(num)
     continue
   
@@ -22,7 +22,7 @@ for i, num in enumerate(ARR[::-1]):
   while stack:
     maxRight = stack[-1]
     if maxRight > num: 
-      answer[length-1-i] = maxRight
+      answer[i] = maxRight
       break
     stack.pop()
   stack.append(num)

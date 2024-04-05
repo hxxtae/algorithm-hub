@@ -20,4 +20,4 @@ else:
     if score > z:
       scoreMax = mid - 1
   
-  print(scoreMin)
+  print(scoreMax + 1)

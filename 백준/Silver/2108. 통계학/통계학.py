@@ -17,7 +17,7 @@ for i in range(N):
   obj[ARR[i]] += 1
 
 maxCnt = max(obj.values())
-objFilter = [*filter(lambda x: maxCnt == x[1], sorted(obj.items(), key=lambda item: (item[1], item[0]), reverse=True))]
+objFilter = [*filter(lambda x: maxCnt == x[1], obj.items())]
 objFilter = sorted(objFilter, key=lambda x: x[0])
 if len(objFilter) == 1:
   print(objFilter[0][0])

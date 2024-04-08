@@ -34,6 +34,7 @@
 |3107. IPv6|[링크](./%EB%B0%B1%EC%A4%80/Gold/3107.%E2%80%85IPv6/IPv6.py)|
 |3190. 뱀|[링크](./%EB%B0%B1%EC%A4%80/Gold/3190.%E2%80%85%EB%B1%80/README.md)|
 |5430. AC|[링크](./%EB%B0%B1%EC%A4%80/Gold/5430.%E2%80%85AC/README.md)|
+|7569. 토마토|[링크](./%EB%B0%B1%EC%A4%80/Gold/7569.%E2%80%85%ED%86%A0%EB%A7%88%ED%86%A0/README.md)|
 |7662. 이중 우선순위 큐|[링크](./%EB%B0%B1%EC%A4%80/Gold/7662.%E2%80%85%EC%9D%B4%EC%A4%91%E2%80%85%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84%E2%80%85%ED%81%90/README.md)|
 ### 🚀 Silver
 | 문제번호 | 링크 |

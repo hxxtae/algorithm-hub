@@ -10,13 +10,14 @@ arrCnt = [0] * (max(ARR)+1)
 
 # 값을 인덱스로 사용하여 각 숫자의 반복 개수 카운트
 for num in ARR:
-  arrCnt[num-1] += 1
+  arrCnt[num] += 1
 
-for i, num in enumerate(ARR):
-  while stack and arrCnt[stack[-1][1]-1] < arrCnt[num-1]:
-    answer[stack[-1][0]] = num
+# 오등큰수 찾아서 answer에 할당
+for i in range(N):
+  while stack and arrCnt[ARR[stack[-1]]] < arrCnt[ARR[i]]:
+    answer[stack[-1]] = ARR[i]
     stack.pop()
   
-  stack.append([i, num])
+  stack.append(i)
 
 print(*answer)

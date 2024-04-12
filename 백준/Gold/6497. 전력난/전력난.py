@@ -17,16 +17,17 @@ def findParent(x, y, parent):
 def mstFunc(m, graph):
   graph = sorted(graph, key=lambda x: x[2])
   parent = [i for i in range(m)]
-  total = sum([arr[2] for arr in graph])
 
   answer = 0
   for a, b, val in graph:
     if not findParent(a, b, parent):
       unionParent(a, b, parent)
+    else:
       answer += val
+      
+  return answer
 
-  return (total - answer)
-
+# 실행
 while True:
   M, N = map(int, read().rstrip().split())
   if M == 0 and N == 0: break

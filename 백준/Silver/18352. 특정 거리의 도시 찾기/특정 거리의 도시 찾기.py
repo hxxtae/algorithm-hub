@@ -19,6 +19,8 @@ distance[X] = 0
 queue = deque([[X, 0]])
 while queue:
   to, dist = queue.popleft()
+
+  if distance[to] < dist: continue
   
   for step_to, step_dist in graph[to]:
     new_dist = distance[to] + step_dist

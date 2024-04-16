@@ -24,7 +24,6 @@ def findFish(startY, startX, babySize):
   visited = [[0] * N for _ in range(N)]
   visited[startY][startX] = 1
   MATRIX[startY][startX] = 0
-  notFount = True
 
   while queue:
     y, x, cnt = queue.popleft()
@@ -36,10 +35,7 @@ def findFish(startY, startX, babySize):
       if MATRIX[nextY][nextX] > babySize: continue
       visited[nextY][nextX] = cnt + 1
       queue.append([nextY, nextX, cnt + 1])
-      notFount = False
   
-  if notFount:
-    return []
   return visited
 
 # 가까운 물고기 먹으로 이동
@@ -65,8 +61,6 @@ def moveBabyToFish():
 
     if not len(heap):
       return time
-
-    # print(heap[0])
 
     dist, y, x = heappop(heap)
     time += dist

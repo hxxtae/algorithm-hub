@@ -1,4 +1,4 @@
-from collections import deque
+from heapq import *
 import sys
 read = sys.stdin.readline
 
@@ -16,11 +16,11 @@ distance = [float('inf')] * (N+1)
 distance[1] = 0
 
 # 3. BFS
-
-queue = deque([(0, 1)]) # (dist, node)
-answer = [0] * (N+1)
-while queue:
-  dist, to = queue.popleft()
+heap = [(0, 1)] # (dist, node)
+heapify(heap)
+answer = [()] * (N+1)
+while heap:
+  dist, to = heappop(heap)
   
   if distance[to] < dist: continue
 
@@ -28,10 +28,10 @@ while queue:
     new_dist = dist + step_dist
     if distance[step_to] > new_dist:
       distance[step_to] = new_dist
-      queue.append((new_dist, step_to))
+      heappush(heap, (new_dist, step_to))
       answer[step_to] = (step_to, to)
 
-arr = list(filter(lambda tup: bool(tup), answer))
+arr = list(filter(lambda tup: len(tup) > 0, answer))
 print(len(arr))
 for i in range(len(arr)):
   print(*arr[i])

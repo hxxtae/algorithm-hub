@@ -16,6 +16,7 @@
 ### 🚀 Gold
 | 문제번호 | 링크 |
 | ----- | ----- |
+|10021. Watering the Fields|[링크](./%EB%B0%B1%EC%A4%80/Gold/10021.%E2%80%85Watering%E2%80%85the%E2%80%85Fields/README.md)|
 |10026. 적록색약|[링크](./%EB%B0%B1%EC%A4%80/Gold/10026.%E2%80%85%EC%A0%81%EB%A1%9D%EC%83%89%EC%95%BD/README.md)|
 |1013. Contact|[링크](./%EB%B0%B1%EC%A4%80/Gold/1013.%E2%80%85Contact/README.md)|
 |10282. 해킹|[링크](./%EB%B0%B1%EC%A4%80/Gold/10282.%E2%80%85%ED%95%B4%ED%82%B9/README.md)|

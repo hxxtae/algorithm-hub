@@ -31,9 +31,12 @@ for i in range(N):
 graph.sort()
 
 answer = 0
+cnt = 0
 for dist, a, b in graph:
   if not findParent(a, b, parent):
     unionParent(a, b, parent)
     answer = max(answer, dist)
+    cnt += 1
+    if cnt == N-1: break
 
 print(answer)

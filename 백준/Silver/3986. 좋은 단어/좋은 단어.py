@@ -1,18 +1,22 @@
-N = int(input())
-ans = 0
+from collections import deque
+import sys
+read = sys.stdin.readline
 
-for _ in range(N):
-    stack = []
-    _list = list(input())
-    for i in _list:
-        if not len(stack):
-            stack.append(i)
-        elif stack[-1] == i:
-            stack.pop(-1)
-        else:
-            stack.append(i)
+N = int(read().rstrip())
+N_LIST = [read().rstrip() for _ in range(N)]
 
+cnt = 0
+for r in range(N):
+  stack = deque([])
+  for c in N_LIST[r]:
     if not len(stack):
-        ans += 1 
+      stack.append(c)
+    elif stack[-1] == c:
+      stack.pop()
+    else:
+      stack.append(c)
 
-print(ans)
+  if not len(stack):
+    cnt += 1
+
+print(cnt)

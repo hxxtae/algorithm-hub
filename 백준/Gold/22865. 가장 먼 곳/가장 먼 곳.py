@@ -1,45 +1,48 @@
+from heapq import *
 import sys
-import heapq
+read = sys.stdin.readline
 
-input = lambda : sys.stdin.readline().rstrip()
+N = int(read().rstrip())
+FRIENDS = [*map(int, read().rstrip().split())]
+M = int(read().rstrip())
+GRAPH = [[*map(int, read().rstrip().split())] for _ in range(M)]
 
-N = int(input())
-A, B, C = map(int, input().split())
-
+# 1. Set Graph
 graph = [[] for _ in range(N+1)]
-M = int(input())
+for a, b, dist in GRAPH:
+  graph[a].append([dist, b])
+  graph[b].append([dist, a])
 
-for _ in range(M):
-    D, E, L = map(int, input().split())
-    graph[D].append([E, L])
-    graph[E].append([D, L])
+def onDijkstra():
+  # 2. Set Distance
+  distance = [float('inf')] * (N+1)
+  heap = []
+  for i in FRIENDS:
+    distance[i] = 0
+    heap.append([0, i]) # [dist, start_node]
+  
+  # 3. BFS
+  heapify(heap)
+  while heap:
+    dist, to = heappop(heap)
 
-def dijkstra(graph, start):
-    INT_MAX = int(10e9)
-    distance = [INT_MAX] * len(graph)
-    distance[start] = 0
-    heap = [[0, start]]
-    while heap:
-        dist, node = heapq.heappop(heap)
-        if distance[node] != dist:
-            continue
+    if distance[to] < dist: continue
 
-        for next_node, next_dist in graph[node]:
-            if dist + next_dist < distance[next_node]:
-                distance[next_node] = dist + next_dist
-                heapq.heappush(heap, [distance[next_node], next_node])
+    for step_dist, step_to in graph[to]:
+      new_dist = step_dist + dist
+      if new_dist < distance[step_to]:
+        distance[step_to] = new_dist
+        heappush(heap, [new_dist, step_to])
+  
+  return distance
 
-    return distance
+distList = onDijkstra()
 
-max_size = 0
 answer = 0
-dist_a = dijkstra(graph, A)
-dist_b = dijkstra(graph, B)
-dist_c = dijkstra(graph, C)
-
+maxDist = 0
 for i in range(1, N+1):
-    if max_size < min(dist_a[i], dist_b[i], dist_c[i]):
-        max_size = min(dist_a[i], dist_b[i], dist_c[i])
-        answer = i
-        
+  if maxDist < distList[i]:
+    maxDist = distList[i]
+    answer = i
+
 print(answer)

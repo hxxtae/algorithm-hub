@@ -6,7 +6,7 @@ pays = [*map(int, read().rstrip().split())]
 budget = int(read().rstrip())
 
 start = 0
-end = budget
+end = max(pays)
 answer = 0
 
 while start <= end:
@@ -26,7 +26,4 @@ while start <= end:
   elif total > budget:
     end = mid - 1
 
-if sum(pays) <= budget:
-  print(max(pays))
-else:
-  print(answer)
+print(answer)

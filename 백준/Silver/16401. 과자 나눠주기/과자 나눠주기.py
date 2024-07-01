@@ -13,9 +13,8 @@ while start <= end:
 
   cnt = 0
   for length in snacks:
-    while mid <= length:
-      cnt += 1
-      length -= mid
+    if length >= mid:
+      cnt += length // mid
   
   if cnt >= M:
     start = mid + 1

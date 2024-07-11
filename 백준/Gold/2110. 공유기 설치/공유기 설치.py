@@ -1,28 +1,32 @@
 import sys
 read = sys.stdin.readline
 
-N, M = map(int, read().rstrip().split(' '))
-ARR = [*map(int, [read().rstrip() for _ in range(N)])]
+N, C = map(int, read().rstrip().split())
+X_ARR = [int(read().rstrip()) for _ in range(N)]
 
-ARR.sort()
-minDis = 1
-maxDis = max(ARR)
-halfDis = 0
+X_ARR.sort()
 
-while minDis <= maxDis:
-  halfDis = (minDis + maxDis) // 2
-  cnt = 1
-  prevHome = ARR[0]
+start = 1
+end = X_ARR[-1] - X_ARR[0]
+answer = 0
 
-  for num in ARR[1:]:
-    if (num - prevHome) >= halfDis:
-      cnt += 1
-      prevHome = num
+while start <= end:
+  mid = (start + end) // 2
+  current = X_ARR[0]
+  count = 1
   
-  if cnt >= M:
-    minDis = halfDis + 1
-  
-  if cnt < M:
-    maxDis = halfDis - 1
+  # 공유기 설치 몇 대 할 수 있는지 체크
+  for i in range(1, len(X_ARR)):
+    if X_ARR[i] >= current + mid:      
+      count += 1
+      current = X_ARR[i] # 인접 시작위치 초기화
 
-print(maxDis)
+  # 공유기 설치 수가 목표 보다 크면 공유기 사이 거리 늘림
+  if count >= C:
+    start = mid + 1
+    answer = mid
+  # 공유기 설치 수가 목표 보다 작으면 공유기 사이 거리 줄임
+  else:
+    end = mid - 1
+
+print(answer)

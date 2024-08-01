@@ -1,18 +1,25 @@
-while True:
-    start, end = 1, 50
-    N = int(input())
-    
-    if N == 0:
-        break
-    while True:
-        n = (start + end) // 2
-        print(n, end=' ')
-        
-        if n == N:
-            break
-        elif n > N:
-            end = n - 1
+import sys
+read = sys.stdin.readline
 
-        else:
-            start = n + 1
-    print(sep = '\n')
+while 1:
+  N = int(read().rstrip())
+  if N == 0: break
+  
+  start = 1
+  end = 50
+  answer = []
+  
+  while start <= end:
+    mid = (start + end) // 2
+    
+    if N > mid:
+      start = mid + 1
+    elif N < mid:
+      end = mid - 1
+    else:
+      answer.append(mid)
+      break
+
+    answer.append(mid)
+
+  print(*answer)

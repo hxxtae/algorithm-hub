@@ -1,15 +1,15 @@
-import sys
-input = sys.stdin.readline
 from collections import deque
+import sys
+read = sys.stdin.readline
 
-for _ in range(int(input())):
-    num = int(input())
-    card = list(map(str, input().strip().split()))
-    word = deque([card[0]])
+T = int(read().rstrip())
+for _ in range(T):
+  N = int(read().rstrip())
+  ARR = read().rstrip().split()
+  
+  dq = deque([ARR[0]])
+  for c in ARR[1:]:
+    if dq[0] >= c: dq.appendleft(c)
+    else: dq.append(c)
 
-    for i in card[1:]:
-        if i > word[0]:
-            word.append(i)
-        else:
-            word.appendleft(i)
-    print(*word, sep="")
+  print(''.join(dq))

@@ -1,24 +1,22 @@
 import sys
 read = sys.stdin.readline
 
-b, c, d = map(int, read().split())
+B, C, D = map(int, read().rstrip().split())
+def readArr():
+  return list(sorted(map(int, read().rstrip().split()), key=lambda x: -x))
+arrB = readArr()
+arrC = readArr()
+arrD = readArr()
 
-burger = list(map(int, read().split()))
-side = list(map(int, read().split()))
-drink = list(map(int, read().split()))
+sum1 = sum(arrB) + sum(arrC) + sum(arrD)
+sum2 = 0
+for i in range(max(B, C, D)):
+  if i < B and i < C and i < D:
+    sum2 += (arrB[i] + arrC[i] + arrD[i]) * 0.9
+  else:
+    if i < B: sum2 += arrB[i]
+    if i < C: sum2 += arrC[i]
+    if i < D: sum2 += arrD[i]
 
-burger.sort(reverse=True)
-side.sort(reverse=True)
-drink.sort(reverse=True)
-
-result = 0
-min_value = min(b, c, d)
-for i in range(min_value) :
-  result += (burger[i] + side[i] + drink[i]) * 0.9
-
-result += sum(burger[min_value::])
-result += sum(side[min_value::])
-result += sum(drink[min_value::])
-
-print(sum(burger) + sum(side) + sum(drink))
-print(int(result))
+print(sum1)
+print(int(sum2))

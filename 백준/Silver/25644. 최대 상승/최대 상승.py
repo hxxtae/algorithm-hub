@@ -1,12 +1,14 @@
 import sys
-input = sys.stdin.readline
+read = sys.stdin.readline
 
-N = int(input())
-ANA = list(map(int, input().split()))
-benefit, result = 0, 0
+N = int(read().rstrip())
+ARR = list(map(int, read().rstrip().split()))
 
-for i in range(N-1, -1, -1) :
-    benefit = max(benefit, ANA[i])
-    result = max(result, benefit - ANA[i])
+minPrice = float('inf')
+answer = 0
 
-print(result)
+for num in ARR:
+  if minPrice < num: answer = max(answer, num - minPrice)
+  else: minPrice = num
+
+print(answer)

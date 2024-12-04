@@ -1,14 +1,15 @@
 import sys
-read = lambda: sys.stdin.readline().rstrip()
-N = int(read())
-books = [int(read()) for _ in range(N)]
+read = sys.stdin.readline
 
-find_target = N
+N = int(read().rstrip())
+ARR = [int(read().rstrip()) for _ in range(N)]
+
+targetNum = N
 answer = 0
-for i in range(N-1, -1, -1):
-    if books[i] != find_target:
-        answer += 1
-    else:
-        find_target -= 1
+for num in ARR[::-1]:
+  if num == targetNum:
+    targetNum -= 1
+  else:
+    answer += 1
 
 print(answer)

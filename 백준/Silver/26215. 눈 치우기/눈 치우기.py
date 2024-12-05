@@ -1,24 +1,26 @@
-import heapq
+from heapq import *
 import sys
 read = sys.stdin.readline
 
-n = int(read())
-snows = list(map(int, read().rstrip().split()))
-cnt = 0
-heap = []
-for snow in snows:
-    if snow > 1440:
-        print(-1)
-        exit(0)
-    else:
-        heapq.heappush(heap, -snow)
+N = int(read().rstrip())
+ARR = list(map(int, read().rstrip().split()))
 
-while len(heap) > 1:
-    max_val = -heapq.heappop(heap)
-    sec_val = -heapq.heappop(heap) if heap else 0
+answer = 0
+heap = [-num for num in ARR]
+heapify(heap)
+while len(heap):
+  if len(heap) > 1:
+    a = -(heappop(heap) + 1)
+    b = -(heappop(heap) + 1)
+    if a > 0: heappush(heap, -a)
+    if b > 0: heappush(heap, -b)
+  else:
+    a = -(heappop(heap) + 1)
+    if a > 0: heappush(heap, -a)
+  
+  answer += 1
 
-    heapq.heappush(heap, -(max_val - sec_val))
-    cnt += sec_val
-
-cnt += -heapq.heappop(heap) if heap else 0
-print(-1 if cnt > 1440 else cnt)
+if answer > 1440:
+  print(-1)
+else:
+  print(answer)

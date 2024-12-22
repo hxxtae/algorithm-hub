@@ -1,34 +1,22 @@
 import sys
 read = sys.stdin.readline
 
-def flip(x, y): #동전을 뒤집는 함수 
+Y, X = map(int, read().rstrip().split())
+ARR = [list([*read().rstrip()]) for _ in range(Y)]
 
-    for i in range(x + 1):
+count = 0
 
-        for j in range(y + 1):
+def flipCoin(y, x):
+  for i in range(y, -1, -1):
+    for j in range(x, -1, -1):
+      coin = ARR[i][j]
+      if coin == '1': ARR[i][j] = '0'
+      else: ARR[i][j] = '1'
 
-            if coin[i][j]==1:
+for i in range(Y-1, -1, -1):
+  for j in range(X-1, -1, -1):
+    if ARR[i][j] == '0': continue    
+    flipCoin(i, j)
+    count += 1
 
-                coin[i][j]=0
-            
-            else:
-                coin[i][j]=1
-
-
-N, M = map(int, read().split())
-
-coin = [list(map(int, list(read().strip()))) for _ in range(N)]
-
-cnt = 0
-
-for i in range(N - 1, -1, -1):
-
-    for j in range(M - 1, -1, -1): #가장 오른쪽 아래부터 거꾸로 내려온다.
-
-        if coin[i][j]:
-
-            cnt += 1
-
-            flip(i, j)
-
-print(cnt)
+print(count)

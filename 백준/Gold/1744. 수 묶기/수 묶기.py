@@ -1,36 +1,28 @@
 import sys
 read = sys.stdin.readline
 
-n = int(read())
+N = int(read().rstrip())
+ARR = [int(read().rstrip()) for _ in range(N)]
 
-plus = []
-minus = []
+# 양수 부분
+plusARR = list(sorted(filter(lambda x: x > 0, ARR), key=lambda x: -x))
 
-result = 0
-for i in range(n):
-    num = int(read())
-    if num > 1:
-        plus.append(num)
-    elif num <= 0:
-        minus.append(num)
-    else:
-        result += num
+# 음수 부분
+minusARR = list(sorted(filter(lambda x: x <= 0, ARR), key=lambda x: -abs(x)))
 
-plus.sort(reverse=True)
-minus.sort() # ex) -3 -2 -1 
+plus = 0
+minus = 0
 
-# 양수 묶기
-for i in range(0, len(plus), 2):
-    if i+1 >= len(plus):
-        result += plus[i]
-    else:
-        result += (plus[i] * plus[i+1])
+if len(plusARR) % 2: plus += plusARR.pop()
+for i in range(0, len(plusARR), 2):
+  a = (plusARR[i] * plusARR[i+1])
+  b = plusARR[i] + plusARR[i+1]
+  if a > b: plus += a
+  else: plus += b
+  
 
-# 음수 묶기
-for i in range(0, len(minus), 2):
-    if i+1 >= len(minus):
-        result += minus[i]
-    else:
-        result += (minus[i] * minus[i+1])
+if len(minusARR) % 2: minus += minusARR.pop()
+for i in range(0, len(minusARR), 2):
+  minus += (minusARR[i] * minusARR[i+1])
 
-print(result)
+print(max(sum(ARR), (plus + minus)))
